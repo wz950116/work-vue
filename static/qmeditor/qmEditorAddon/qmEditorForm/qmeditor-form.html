@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>插入表单项目</title>
+    <script charset="utf-8" src="../../dialogs/internal.js"></script>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: Arial, 'Microsoft YaHei', SimSun;
+        }
+
+        select {
+            font-family: Arial, 'Microsoft YaHei', SimSun;
+            font-size: 1em;
+            box-sizing: border-box;
+            line-height: 1em;
+            height: 1.5em;
+            padding: 0;
+            margin: 0;
+        }
+
+        input {
+            font-family: Arial, 'Microsoft YaHei', SimSun;
+            box-sizing: border-box;
+            font-size: 1em;
+            line-height: 1em;
+            height: 1.5em;
+            padding: 0;
+            margin: 0;
+        }
+
+        #itmLstTbl {
+            border-collapse: collapse;
+        }
+
+            #itmLstTbl > tbody > tr > td {
+                padding: 0;
+                border-style: solid;
+                border-color: black;
+                border-width: 1px;
+            }
+
+                #itmLstTbl > tbody > tr > td > input[type=text] {
+                    border: none;
+                    width: 100%;
+                    background-color: transparent;
+                }
+
+            #itmLstTbl > tbody > tr:hover > td {
+                background-color: aliceblue;
+            }
+    </style>
+    <script>
+        window.addEventListener("load", function (evt) {
+            var fontFamily = {
+                "SimSun": "宋体",
+                "SimHei": "黑体",
+                "'Microsoft YaHei'": "微软雅黑",
+                "Arial": "Arial",
+                "DengXian": "等线"
+            };
+            var fontSize = {
+                "10px": "10px",
+                "12px": "12px",
+                "14px": "14px",
+                "16px": "16px",
+                "18px": "18px",
+                "20px": "20px",
+                "24px": "24px",
+                "36px": "36px",
+                "48px": "48px"
+            }
+            document.querySelectorAll("select[name=font_family]").forEach(function (sel) {
+                var idx = 0;
+                for (var key in fontFamily) {
+                    var val = fontFamily[key];
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", key);
+                    opt.innerText = val;
+                    opt.style.fontFamily = key;
+                    if ((idx++) == 0) {
+                        opt.setAttribute("selected", "selected");
+                    }
+                    sel.appendChild(opt);
+                }
+            });
+            document.querySelectorAll("select[name=font_size]").forEach(function (sel) {
+                var idx = 0;
+                for (var key in fontSize) {
+                    var val = fontSize[key];
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", key);
+                    opt.innerText = val;
+                    if ((idx++) == 2) {
+                        opt.setAttribute("selected", "selected");
+                    }
+                    sel.appendChild(opt);
+                }
+            });
+        });
+        function form_step1() {
+            event.preventDefault();
+            event.stopPropagation();
+            var fromType = document.getElementById("formType").value;
+            var nextFrom = document.getElementById("form_step2_" + fromType);
+            nextFrom.reset();
+            showCard("form_step2_" + fromType);
+        }
+
+        function showCard(id) {
+            var frms = document.querySelectorAll("form");
+            for (var i = 0; i < frms.length; i++) {
+                var frm = frms[i];
+                if (frm.id === id) {
+                    frm.style.display = "";
+                } else {
+                    frm.style.display = "none";
+                }
+            }
+        }
+        // 构建label
+        function form_step2_label() {
+            event.preventDefault();
+            event.stopPropagation();
+            var form = document.getElementById("form_step2_label");
+            var ipt = document.createElement("span");
+            ipt.setAttribute("qmcode", document.getElementById("qmcode").value);
+            ipt.setAttribute("title", document.getElementById("qmname").value);
+            ipt.setAttribute("qmtype", "label");
+            ipt.setAttribute("class", "qmEditorLabel");
+            ipt.setAttribute("contenteditable", "false");
+            ipt.innerText = "XXX";
+            ipt.style.fontFamily = form.querySelector("select[name='font_family']").value;
+            ipt.style.fontSize = form.querySelector("select[name='font_size']").value;
+            editor.execCommand("inserthtml", ipt.outerHTML);
+            dialog.close();
+            return false;
+        }
+        // 构建select
+        function form_step2_select() {
+            event.preventDefault();
+            event.stopPropagation();
+            var form = document.getElementById("form_step2_label");
+            var ipt = document.createElement("span");
+            ipt.setAttribute("qmcode", document.getElementById("qmcode").value);
+            ipt.setAttribute("title", document.getElementById("qmname").value);
+            ipt.setAttribute("qmtype", "label");
+            ipt.setAttribute("class", "qmEditorLabel");
+            ipt.setAttribute("contenteditable", "false");
+            ipt.innerText = "XXX";
+            ipt.style.fontFamily = form.querySelector("select[name='font_family']").value;
+            ipt.style.fontSize = form.querySelector("select[name='font_size']").value;
+            editor.execCommand("inserthtml", ipt.outerHTML);
+            dialog.close();
+            return false;
+        }
+        // 构建text
+        function form_step2_text() {
+            event.preventDefault();
+            event.stopPropagation();
+            var form = document.getElementById("form_step2_text");
+            var border_t = form.querySelector("input[name='br_t']").checked;
+            var border_b = form.querySelector("input[name='br_b']").checked;
+            var border_l = form.querySelector("input[name='br_l']").checked;
+            var border_r = form.querySelector("input[name='br_r']").checked;
+            var border_width = form.querySelector("input[name='br_width']").value;
+            var ipt = document.createElement("input");
+            ipt.setAttribute("qmcode", document.getElementById("qmcode").value);
+            ipt.setAttribute("title", document.getElementById("qmname").value);
+            ipt.setAttribute("qmtype", "text");
+            ipt.setAttribute("type", "text");
+            ipt.style.borderStyle = "solid";
+            ipt.style.borderColor = "black";
+            ipt.style.borderWidth =
+                (border_t ? border_width + "px" : "0")
+                + " " + (border_r ? border_width + "px" : "0")
+                + " " + (border_b ? border_width + "px" : "0")
+                + " " + (border_l ? border_width + "px" : "0");
+            ipt.style.width = form.querySelector("input[name='width']").value + "px";
+            ipt.style.fontFamily = form.querySelector("select[name='font_family']").value;
+            ipt.style.fontSize = form.querySelector("select[name='font_size']").value;
+            ipt.style.textAlign = form.querySelector("input[name='text_align']:checked").value;
+            editor.execCommand("inserthtml", ipt.outerHTML);
+            dialog.close();
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <form id="form_step1" autocomplete="off" onsubmit="form_step1();">
+        <table>
+            <tr>
+                <td>项目类型:</td>
+                <td>
+                    <select id="formType" style="width:150px;">
+                        <option value="label">label</option>
+                        <option value="text">text</option>
+                    </select>
+                    <span style="color:red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td>项目代码:</td>
+                <td>
+                    <input id="qmcode" type="text" style="width:150px;" maxlength="128" required="required" />
+                    <span style="color:red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td>项目名称:</td>
+                <td>
+                    <input id="qmname" type="text" style="width:150px;" maxlength="128" />
+                </td>
+            </tr>
+        </table>
+        <div style="position:fixed;bottom:5px; right:5px;">
+            <input type="submit" value="下一步" />
+        </div>
+    </form>
+
+    <form id="form_step2_label" style="display:none;" onsubmit="form_step2_label()">
+        <table>
+            <tr>
+                <td>字体:</td>
+                <td>
+                    <select name="font_family"></select>
+                </td>
+                <td>字号:</td>
+                <td>
+                    <select name="font_size"></select>
+                </td>
+            </tr>
+        </table>
+        <div style="position:fixed;bottom:5px; right:5px;">
+            <input type="button" value="上一步" onclick="showCard('form_step1')" />
+            <input type="submit" value="完成" />
+        </div>
+    </form>
+
+    <form id="form_step2_text" style="display:none;" onsubmit="form_step2_text()">
+        <table>
+            <tr>
+                <td>边框:</td>
+                <td>
+                    <label><input name="br_t" type="checkbox" />上</label>
+                    <label><input name="br_b" type="checkbox" checked="checked" />下</label>
+                    <label><input name="br_l" type="checkbox" />左</label>
+                    <label><input name="br_r" type="checkbox" />右</label>
+                </td>
+                <td>边框宽度:</td>
+                <td>
+                    <input name="br_width" type="number" value="1" style="width:40px;" required="required" min="1" />px
+                </td>
+            </tr>
+            <tr>
+                <td>字体:</td>
+                <td>
+                    <select name="font_family" style="font-size:12px;"></select>
+                </td>
+                <td>字号:</td>
+                <td>
+                    <select name="font_size"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>宽度:</td>
+                <td colspan="3">
+                    <input name="width" type="number" value="100" style="width:80px;" required="required" min="1" />px
+                </td>
+            </tr>
+            <tr>
+                <td>对齐方式:</td>
+                <td colspan="3">
+                    <label><input type="radio" name="text_align" value="left" checked="checked" />左</label>
+                    <label><input type="radio" name="text_align" value="center" />中</label>
+                    <label><input type="radio" name="text_align" value="right" />右</label>
+                </td>
+            </tr>
+        </table>
+        <div style="position:fixed;bottom:5px; right:5px;">
+            <input type="button" value="上一步" onclick="showCard('form_step1')" />
+            <input type="submit" value="完成" />
+        </div>
+    </form>
+
+</body>
+</html>

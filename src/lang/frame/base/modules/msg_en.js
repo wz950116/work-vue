@@ -1,0 +1,180 @@
+export default {
+  msg: {
+    supplier: {
+      title: 'Message supplier',
+      msgRecipientType: 'Receiving account type',
+      msgSupplierName: 'Supplier name',
+      usingFlag: 'Enabled',
+      msgInterface: 'Message Interface',
+      remark: 'Remark',
+      dtFrom: 'Start date',
+      dtTo: 'End date',
+      msgRecipientTypeType: 'Please select the receiving account type',
+      requiredMsgSupplierName: 'Please enter the the message provider name',
+      requiredMsgSupplierNameLength: 'Not more than 80 characters in length',
+      requiredMsgInterfaceLength: 'Not more than 120 characters in length',
+      requiredMsgInterface: 'Please enter the message interface',
+      requiredMsgremarkLength: 'Not more than 500 characters in length'
+    },
+    func: {
+      title: 'Message function',
+      msgFuncCode: 'Function code',
+      msgFuncName: 'Function name',
+      status: 'Enabled',
+      remark: 'Remark',
+      required: {
+        msgFuncCode: 'Please enter the message function code',
+        msgFuncName: 'Please enter the message function name',
+        msgParamCode: 'Please enter the parameter code',
+        msgParamName: 'Please enter the parameter name',
+        msgParamCodeRepeat: 'message function code is repeat',
+        msgParamNameRepeat: 'message function name is repeat',
+        msgParamType: 'Please select the parameter type',
+        requireFlag: 'Please select the whether must',
+        usingFlag: 'Please select the enabled'
+      },
+      sizeTip: {
+        msgFuncCode: 'Not more than 80 characters in length',
+        msgFuncName: 'Not more than 80 characters in length',
+        msgParamCode: 'Not more than 80 characters in length',
+        msgParamName: 'Not more than 80 characters in length',
+        paramRemark: 'Not more than 500 characters in length',
+        funcRemark: 'Not more than 500 characters in length'
+      }
+    },
+    funcParams: {
+      msgParamCode: 'Parameter code',
+      msgParamName: 'Parameter name',
+      msgParamType: 'Parameter type',
+      requireFlag: 'Whether must',
+      usingFlag: 'Enabled',
+      set: 'Message function parameters'
+    },
+    templet: {
+      title: 'Message templet',
+      msgFuncCode: 'Message function code',
+      msgFuncName: 'Message function name',
+      msgSendType: 'Message send type',
+      templetName: 'Templet name',
+      mailFormatType: 'Mail formate',
+      msgClassType: 'Message class',
+      templetTitle: 'Templet title',
+      templetContent: 'Templet Content',
+      remark: 'Remark',
+      templetExtend: 'Templet extend',
+      required: {
+        msgFuncCode: 'Please enter the message function code',
+        templetName: 'Please enter the message function name'
+      },
+      sizeTip: {
+        templetName: 'Not more than 80 characters in length',
+        templetTitle: 'Not more than 1000 characters in length',
+        templetContent: 'Not more than 2000 characters in length',
+        remark: 'Not more than 500 characters in length',
+        templetExtend: 'Not more than 2000 characters in length'
+      }
+    },
+    channel: {
+      title: 'Message channel',
+      msgSupplierName: 'Supplier name',
+      channelType: 'Channel type',
+      msgChannelName: 'Channel name',
+      msgSupplierId: 'Message supplier',
+      usingFlag: 'Enabled',
+      corpId: 'CORP_ID',
+      corpSecret: 'CORP_SECRET',
+      appid: 'APPID',
+      appsecret: 'APPSECRET',
+      msgAccound: 'Accound',
+      msgPassword: 'Password',
+      mailSendProtocol: 'Email send protocol',
+      mailServerHost: 'Email server address',
+      mailServerPort: 'Email server port',
+      mailFromName: 'Sender name',
+      mailFromAddress: 'Sender address',
+      serviceAddrSend: 'Server address(send)',
+      serviceAddrChk: 'Server address(check)',
+      mailCc: 'Email Cc address',
+      mailBcc: 'Email Bcc address',
+      msgPri: 'Message price',
+      remark: 'Remark',
+      required: {
+        MsgSupplierId: 'Please select the message supplier',
+        MsgMailFromAddress: 'Please enter the correct email',
+        MsgChannelName: 'Please enter the channel name',
+        MsgChannelNameLength: 'Not more than 80 characters in length',
+        MsgmsgAccoundLength: 'Not more than 120 characters in length',
+        mailServerPort: 'Please enter the correct port',
+        msgPri: 'Please enter the correct price',
+        requiredMsgremarkLength: 'Not more than 500 characters in length'
+      }
+    },
+    record: {
+      title: 'Message record',
+      msgTaskNo: 'Message task number',
+      userSendDt: 'Send time',
+      msgSendStat: 'status',
+      msgFuncCode: 'Function code',
+      msgFuncName: 'Function name',
+      recipientName: 'Recipient name',
+      msgChannelName: 'Channel name',
+      msgTempletName: 'Templet name',
+      senderAccount: 'Sender account',
+      groupName: 'Group name',
+      organName: 'Organ name',
+      senderName: 'Sender name',
+      confirmResend: 'Confirm resend?',
+      resendSuccess: 'Resend success!',
+      confirmCancel: 'Confirm cancel?',
+      cancelSuccess: 'Cancel success!',
+      required: {}
+    },
+    webmsg: {
+      title: 'My message',
+      msgTitle: 'Message title',
+      userSendDt: 'Send time',
+      msgClassType: 'Message class',
+      msgContent: 'Message content',
+      readFlag: 'Whether read'
+    },
+    msgChannelTemplate: {
+      title: 'Channel Templet connection',
+      msgFuncCode: 'Function code',
+      msgFuncName: 'Function name',
+      msgChannelName: 'Channel name',
+      templetName: 'Templet name',
+      group: 'Group',
+      groupCode: 'Group code',
+      groupName: 'Group name',
+      organ: 'Organ',
+      organCode: 'Organ code',
+      organName: 'Organ name',
+      channel: 'Channel',
+      msgTemp: 'Templet',
+      status: 'Status',
+      wxTempletCode: 'Wechat templet code',
+      otherTempletCode1: 'Other templet code(1)',
+      otherTempletCode2: 'Other templet code(2)',
+      otherTempletCode3: 'Other templet code(3)',
+      otherTempletCode4: 'Other templet code(4)',
+      otherTempletCode5: 'Other templet code(5)',
+      remark: 'Remark',
+      required: {
+        groupId: 'Please select the group',
+        organId: 'Please select the organ',
+        msgFuncId: 'Please select the function',
+        msgChannelId: 'Please select the channel',
+        msgTempletId: 'Please select the templet'
+      },
+      sizeTip: {
+        wxTempletCode: 'Not more than 120 characters in length',
+        otherTempletCode1: 'Not more than 120 characters in length',
+        otherTempletCode2: 'Not more than 120 characters in length',
+        otherTempletCode3: 'Not more than 120 characters in length',
+        otherTempletCode4: 'Not more than 120 characters in length',
+        otherTempletCode5: 'Not more than 120 characters in length'
+      }
+    },
+    tableLoad: 'loading..'
+  }
+}

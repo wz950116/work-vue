@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>选择图片</title>
+	<script charset="utf-8" src="../../dialogs/internal.js"></script>
+	<style>
+		body {
+			font-size:14px;
+			font-family:SimSun;
+		}
+	</style>
+	<script>
+		function changeSrcType(obj) {
+			if (obj.value == "L") {
+				document.getElementById("imgSrcL").style.display = "";
+				document.getElementById("imgSrcW").style.display = "none";
+				document.getElementById("imgSrcLbl").innerText = "上传图片:";
+			} else {
+				document.getElementById("imgSrcL").style.display = "none";
+				document.getElementById("imgSrcW").style.display = "";
+				document.getElementById("imgSrcLbl").innerText = "图片URL:";
+			}
+		}
+		function uploadImg(e) {
+			var imgFile = e.target.files[0]; //获取图片文件
+			if (!imgFile.type.startsWith("image/")) {
+				alert("请选择图片文件");
+				return;
+			}
+			var reader = new FileReader();
+			reader.addEventListener("load", function (evt) {
+				document.getElementById("previewDiv").style.backgroundImage = "url('" + evt.target.result + "')";
+				document.getElementById("previewDiv").setAttribute("imgSrc", "L");
+			});
+			reader.readAsDataURL(imgFile);
+		}
+		function setImgUrl(obj) {
+			document.getElementById("previewDiv").style.backgroundImage = "url('" + obj.value + "')";
+			document.getElementById("previewDiv").setAttribute("imgSrc", "W");
+		}
+		function doOk() {
+			var imgDataOrg = document.getElementById("previewDiv").style.backgroundImage;
+			if (imgDataOrg == "") {
+				dialog.close();
+				return;
+			}
+			imgDataOrg = imgDataOrg.substr(5, imgDataOrg.length - 7);
+			var img = document.createElement("img");
+			img.src = imgDataOrg;
+			img.addEventListener("load", function () {
+				var oW = img.naturalWidth; // 原始图片宽度
+				var oH = img.naturalHeight; // 原始图片高度
+				var nW = parseInt(document.getElementById("imgW").value); // 指定图片宽度
+				var nH = parseInt(document.getElementById("imgH").value); // 指定图片高度
+				var dW = 400; // 默认宽度
+				var dH = 300; // 默认高度
+				var decW = nW > 0; // 是否指定宽度
+				var decH = nH > 0; // 是否指定高度
+				if (!decW && !decH) {
+					if (oW <= dW && oH <= dH) {
+						nW = oW;
+						nH = oH;
+					} else if (oW <= dW) {
+						nW = parseInt(Math.ceil(oW * dH / nH));
+						nH = dH;
+					} else if (oH <= dH) {
+						nW = dW;
+						nH = parseInt(Math.ceil(oH * dW / nH));
+					} else {
+						var ratW = oW / dW;
+						var ratH = oH / dH;
+						if (ratW === ratH) {
+							nW = dW;
+							nH = dH;
+						} else if (ratW > ratH) {
+							nW = dW;
+							nH = parseInt(Math.ceil(oH / ratW));
+						} else {
+							nW = parseInt(Math.ceil(oW / ratH));
+							nH = dH;
+						}
+					}
+				}
+				nW = nW > 0 ? nW : oW;
+				nH = nH > 0 ? nH : oH;
+				var imgN = document.createElement("img");
+				imgN.style.width = nW + "px";
+				imgN.style.height = nH + "px";
+				if (document.getElementById("previewDiv").getAttribute("imgSrc") == "L") {
+					var canvas = document.createElement("canvas");
+					canvas.width = nW;
+					canvas.height = nH;
+					var ctx = canvas.getContext("2d");
+					ctx.drawImage(img, 0, 0, oW, oH, 0, 0, nW, nH);
+					var imgType = imgDataOrg.substr(5, imgDataOrg.indexOf(";")-5);
+					var imgData = canvas.toDataURL(imgType);
+					if (imgData.length < imgDataOrg.length) {
+						imgN.src = imgData;
+					} else {
+						imgN.src = imgDataOrg;
+					}
+				} else {
+					imgN.src = imgDataOrg;
+				}
+				editor.execCommand("inserthtml", imgN.outerHTML);
+				console.log(imgN.outerHTML);
+				dialog.close();
+			});
+		}
+
+	</script>
+</head>
+<body>
+	<form>
+		<table>
+			<tr>
+				<td>图片来源:</td>
+				<td style="width:330px;">
+					<label><input type="radio" name="imgSrc" value="L" onclick="changeSrcType(this)" />本地图片</label>
+					<label><input type="radio" name="imgSrc" value="W" onclick="changeSrcType(this)" checked="checked" />网络图片</label>
+				</td>
+				<td>图片宽度:</td>
+				<td><input type="number" min="1" step="1" id="imgW" style="width:50px;" /></td>
+			</tr>
+			<tr>
+				<td id="imgSrcLbl">上传图片:</td>
+				<td>
+					<div id="imgSrcL" style="display:none;">
+						<input type="file" style="width:300px;" onchange="uploadImg(event)" />
+					</div>
+					<div id="imgSrcW">
+						<input type="url" style="width:300px;" onchange="setImgUrl(this)" />
+					</div>
+				</td>
+				<td>图片高度:</td>
+				<td><input type="number" min="1" step="1" id="imgH" style="width:50px;" /></td>
+			</tr>
+
+		</table>
+		<div id="previewDiv" style="width:300px;height:225px;background-color:lightgrey;background-size:contain;background-repeat:no-repeat;background-position:center center;">
+		</div>
+		<div style="position:fixed;bottom:5px; right:5px;">
+			<input type="button" value="确定" onclick="doOk()" />
+		</div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,240 @@
+#app {
+  // 侧边栏
+  .sidebar-container {
+    height: 100%;
+    position: fixed;
+    top: 90px;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    font-size: 0px;
+    z-index: 1001;
+    overflow: hidden;
+    padding: 26px 0 89px;
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out,
+        0s padding-right ease-in-out;
+    }
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+      .el-scrollbar__view {
+        height: 100%;
+        padding-top: 2px; // 首个收缩后菜单距离顶部1px
+      }
+    }
+    .is-horizontal {
+      display: none;
+    }
+    a {
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+    }
+    .svg-icon {
+      margin-right: 16px;
+    }
+    .el-menu {
+      border: none;
+      height: 100%;
+      width: 100% !important;
+    }
+  }
+  .hide-sidebar {
+    .sidebar-container {
+      width: 40px !important;
+    }
+    .main-container {
+      margin-left: 40px;
+    }
+    .submenu-title-noDropdown {
+      padding-left: 10px !important;
+      position: relative;
+      .el-tooltip {
+        padding: 0 13px !important;
+      }
+    }
+    .el-submenu {
+      overflow: hidden;
+      & > .el-submenu__title {
+        padding-left: 13px !important;
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+    .el-menu--collapse {
+      .el-submenu {
+        & > .el-submenu__title {
+          & > span {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .el-menu-item {
+      & > .el-tooltip {
+        padding-left: 13px !important;
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+  }
+  .sidebar-container .nest-menu .el-submenu > .el-submenu__title,
+  .sidebar-container .el-submenu .el-menu-item {
+    min-width: 200px !important;
+  }
+  .el-menu--collapse .el-menu .el-submenu {
+    min-width: 200px !important;
+  }
+  .el-submenu__title {
+    height: 34px;
+    line-height: 34px;
+  }
+  .el-menu-item {
+    height: 34px;
+    line-height: 34px;
+  }
+}
+
+.menu-wrapper .el-menu-item {
+  padding: 0 10px !important;
+  span {
+    width: 150px !important;
+  }
+}
+.menu-wrapper > .el-submenu > .el-menu > a > .el-menu-item {
+  padding: 0 40px !important;
+}
+.el-menu--popup-right-start {
+  margin-left: 1px !important;
+  margin-right: 0;
+}
+.el-menu-item {
+  height: 34px;
+  line-height: 34px;
+  .svg-icon {
+    margin-right: 3px !important;
+  }
+  span {
+    display: inline-block;
+    width: 112px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.el-menu--popup {
+  padding: 0;
+}
+.el-submenu .el-menu-item {
+  height: 34px;
+  line-height: 34px;
+  padding-left: 20px !important;
+  padding-right: 10px !important;
+  span {
+    width: 150px !important;
+  }
+}
+.el-submenu .el-submenu__title {
+  padding: 0 10px !important;
+  .el-submenu__icon-arrow {
+    right: 10px !important;
+  }
+}
+// 三级菜单（展开）
+.el-submenu .el-submenu .el-submenu__title {
+  height: 34px;
+  line-height: 34px;
+  padding-left: 20px !important;
+  span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.el-submenu .el-submenu .el-menu .el-menu-item {
+  padding-left: 30px !important;
+  padding-right: 25px !important;
+  span {
+    width: 130px;
+  }
+}
+// 四级菜单（展开）
+.el-submenu .el-submenu .el-submenu .el-submenu__title {
+  height: 34px;
+  line-height: 34px;
+  padding-left: 60px !important;
+  span {
+    display: inline-block;
+    width: 112px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.el-submenu .el-submenu .el-submenu .el-menu .el-menu-item {
+  padding-left: 80px !important;
+}
+
+// app标签以外
+// 三级菜单（收缩）
+.el-menu--vertical {
+  .el-menu {
+    .el-menu-item {
+      height: 34px;
+      line-height: 34px;
+      padding-left: 10px !important;
+      span {
+        width: 150px !important;
+      }
+    }
+    .el-submenu {
+      .el-submenu__title {
+        height: 34px;
+        line-height: 34px;
+      }
+      .el-menu {
+        .el-menu-item {
+          padding: 0 20px !important;
+        }
+        // 四级菜单（收缩）
+        .el-submenu {
+          .el-submenu__title {
+            height: 34px;
+            line-height: 34px;
+            padding-left: 20px !important;
+          }
+          .el-menu {
+            .el-menu-item {
+              padding: 0 20px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .el-menu--popup {
+    padding: 0;
+  }
+}
+.el-menu--vertical::-webkit-scrollbar {
+  display: none;
+}
+.el-submenu__title {
+  .svg-icon {
+    margin-right: 3px !important;
+  }
+  span {
+    display: inline-block;
+    width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

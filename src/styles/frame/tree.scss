@@ -1,0 +1,122 @@
+@import 'src/styles/frame/mixin.scss';
+.tree-dialog {
+  .dialog-container {
+    width: 360px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #f3f4f6;
+    z-index: 9999;
+    .dialog-content {
+      padding: 10px;
+      background: #fff;
+      border: 1px solid rgb(204, 204, 204);
+      border-radius: 5px;
+      .content-wrap {
+        @include scrollBar;
+        height: 300px;
+        padding: 10px;
+        overflow-y: auto;
+        background: #fff;
+      }
+    }
+  }
+}
+.tree-table-dialog {
+  .dialog-container {
+    width: 1160px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #f3f4f6;
+    z-index: 9999;
+    .tree-table-dialog-form {
+      position: relative;
+      margin: 10px;
+      padding: 10px 10px 10px 28px;
+      border: 1px solid #e4e7ed;
+      border-radius: 5px;
+      background: #ffffff;
+      .search-btn {
+        position: absolute;
+        right: 28px;
+        top: 12px;
+        .el-button--medium {
+          width: 80px;
+          height: 30px;
+          font-size: 14px;
+          border-radius: 3px;
+          padding: 7px 17px !important;
+          float: right;
+        }
+      }
+    }
+    .dialog-content {
+      @include clearfix;
+      height: 533px;
+      background: rgb(243, 246, 244);
+      border: none;
+      border-radius: 0;
+      margin-top: 30px;
+      .dialog-content-tree {
+        position: relative;
+        float: left;
+        width: 20%;
+        height: 100%;
+        background: #fff;
+        border: 1px solid #e4e7ed;
+        border-radius: 5px;
+        padding: 10px;
+        overflow: auto;
+        .title-info {
+          position: absolute;
+          left: 0;
+          top: -30px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          font-size: 14px;
+          color: #333;
+        }
+      }
+      .dialog-content-table {
+        position: relative;
+        float: left;
+        width: 79%;
+        height: 100%;
+        background: #fff;
+        border-radius: 5px;
+        .title-info {
+          position: absolute;
+          left: 0;
+          top: -30px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          font-size: 14px;
+          color: #333;
+        }
+        .table-content {
+          @include scrollBar;
+        }
+        .footer {
+          width: 100%;
+          .refresh {
+            float: left;
+            margin: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .dialog-footer {
+      width: 100%;
+      height: 45px;
+      line-height: 45px;
+      background: rgb(230, 230, 230);
+      text-align: center;
+    }
+  }
+}

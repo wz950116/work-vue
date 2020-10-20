@@ -1,0 +1,184 @@
+@import './frame/mixin.scss';
+@import './frame/element-ui.scss'; // element reset
+@import './frame/sidebar.scss'; // 侧边栏
+@import './frame/theme.scss'; // 主题文件
+@import './frame/table-page.scss'; // 通用表格
+@import './frame/dialog-common.scss'; // 通用弹窗
+@import './frame/tree.scss'; // 树形图
+@import './frame/login.scss'; // 登录
+@import './proj/index.scss'; // 项目样式
+
+:root {
+  --navFontColor: #ffffff; // 导航栏右侧字体颜色
+  --menuBg: #3e6db5; // 一级颜色
+  --menuItemBg: #4976b9; // 二级颜色
+  --menuHover: #6390d3; // 所有划过背景颜色
+  --menuFont: #bcd4f8; // 所有字体图标颜色
+  --menuFontHover: #ffffff; // 所有划过字体图标颜色
+  --menuFormFont: #ffffff; // 搜索框字体图标
+  --menuFormBorder: #6390d3; // 搜索框边框颜色
+  --tagsViewBg: #e2e9f4; // 标签页外围背景色
+  --tagsBg: #e2e9f4; // 标签页背景色
+  --tagsBorderColor: #bbbbbb; // 标签页边框颜色
+  --tagsActiveBg: #e2e2e2; // 标签页激活背景色
+  --tagsMenuDropBg: #acc3e6; // 标签页右侧下拉块背景色
+  --tagsFontColor: #000000; // 标签页字体颜色
+  --tagsFontActiveColor: #000000; // 标签页字体激活颜色
+  --tagsCloseColor: #9aa6b7; // 标签页关闭按钮颜色
+  --contentBg: #e2e2e2; // 右侧内容背景色
+  --contentBorderColor: #aaaaaa; // 右侧内容模块边框色
+  --thColor: #f5f7fa; // 表格表头背景色
+  --trSelectBg: #b8d1f6; // 表格选中行背景色
+  --trHoverBg: #e0eafa; // 表格划过行背景色
+  --trSelectCheckboxBg: #3e6db5; // 表格选中行勾选按钮颜色
+  --btnFontColor: #ffffff; // 按钮字体颜色
+  --iconHoverColor: #f39800; // 图标划过字体颜色
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, SimSun, sans-serif !important;
+  overflow: auto;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+#app {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+}
+
+code {
+  padding: 15px 16px;
+  display: block;
+  line-height: 36px;
+  font-size: 15px;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  a {
+    color: #337ab7;
+    cursor: pointer;
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.app-container {
+  background: #f3f4f6;
+  border-bottom-left-radius: 5px;
+}
+
+// 多头/空头样式
+.longs {
+  color: red;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.short {
+  color: #0fc117;
+  margin-left: 10px;
+  font-weight: bold;
+}
+// 媒体查询
+@media screen and (min-width: 0) and (max-width: 1366px) {
+  .el-form-item__content {
+    .el-radio + .el-radio {
+      margin-left: 15px !important;
+    }
+  }
+  .el-row .el-textarea-item .el-form-item__content {
+    width: 476px !important;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .el-select {
+    width: 100%;
+  }
+  .el-input-number {
+    width: 100%;
+  }
+  .el-autocomplete {
+    width: 100%;
+  }
+  .multiple-radio {
+    .el-radio + .el-radio {
+      margin-left: 8px !important;
+    }
+    .el-radio__label {
+      padding-left: 2px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .multiple-radio {
+    .el-radio + .el-radio {
+      margin-left: 30px !important;
+    }
+    .el-radio__label {
+      padding-left: 2px !important;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+﻿body {
+	font-family: sans-serif, SimSun;
+	font-size: 16px;
+	margin: 8px;
+}
+
+p {
+	margin: 5px 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+span.qmEditorLabel {
+	user-select: all;
+	cursor: pointer;
+}
+
+input {
+	background-color:transparent;
+}
+input:disabled {
+	background-color: transparent;
+}
+select {
+	background-color: transparent;
+}
+select:disabled {
+	background-color: transparent;
+}
+textarea {
+	background-color: transparent;
+}
+textarea:disabled {
+	background-color: transparent;
+}
